@@ -1,0 +1,17 @@
+---
+- vars_prompt:
+    - name: "host"
+      prompt: "Enter hostname (ex. localhost)"
+      confirm: no
+      private: no
+      default: localhost
+      when: host is not defined
+    - name: "branch"
+      prompt: "Target branch (ex. stable/juno, master)"
+      confirm: no
+      private: no
+      default: master
+      when: branch is not defined
+  hosts: "{{host}}"
+  roles:
+  - i18n-devstack

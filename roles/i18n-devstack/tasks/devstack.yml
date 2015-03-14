@@ -1,0 +1,25 @@
+- name: Install git
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - git
+  sudo: yes
+- name: Install optional packages for OpenStack development
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - libmysqlclient-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - python-dev
+    - libssl-dev
+    - libffi-dev
+  sudo: yes
+- name: git clone devstack
+  git: repo=http://git.openstack.org/openstack-dev/devstack.git
+       dest={{ devstack_dir }}
+       version={{ branch }}
+       force=no
+- name: Copy local.conf
+  template: src={{ item.src }} dest={{ item.dest }} backup=yes
+  with_items:
+  - src: local.conf
+    dest: "{{ devstack_dir }}/local.conf"

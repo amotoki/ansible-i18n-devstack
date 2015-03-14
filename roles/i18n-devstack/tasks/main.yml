@@ -1,0 +1,4 @@
+- include: devstack.yml
+- include: horizon-i18n.yml
+- include: cron.yml
+- include: bash-completion.yml

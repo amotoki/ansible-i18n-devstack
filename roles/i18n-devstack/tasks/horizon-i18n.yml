@@ -1,0 +1,16 @@
+- name: git clone horizon-i18n-tools
+  git: repo=https://github.com/amotoki/horizon-i18n-tools.git
+       dest={{ horizon_i18n_tools_dir }}
+       version=master
+       force=no
+- name: Install pip
+  apt: pkg=python-pip state=installed
+  sudo: yes
+- name: Install transifex client
+  pip: name=transifex-client
+  sudo: yes
+- name: Copy 99-horizon-i18n
+  template: src={{ item.src }} dest={{ item.dest }} backup=yes
+  with_items:
+  - src: 99-horizon-i18n.sh
+    dest: "{{ devstack_dir }}/extras.d/99-horizon-i18n.sh"

@@ -1,0 +1,8 @@
+branch: master
+#branch: stable/juno
+enable_cron: yes
+
+home: "{{ ansible_env.HOME }}"
+devstack_dir: "{{ home }}/devstack"
+horizon_i18n_tools_dir: "{{ home }}/horizon-i18n-tools"
+bash_completion_dir: "{{ home }}/.bash_completion.d"

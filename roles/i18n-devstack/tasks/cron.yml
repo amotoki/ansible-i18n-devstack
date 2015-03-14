@@ -1,0 +1,12 @@
+- name: cron import-trans.sh
+  cron:
+    name: "Horizon import trans"
+    minute: 15
+    job: "{{ horizon_i18n_tools_dir }}/import-trans.sh -r {{ branch|basename }}"
+    user: "{{ ansible_env.USER }}"
+  when: enable_cron|bool
+- name: disable cron import-trans.sh
+  cron:
+    name: "Horizon import trans"
+    state: absent
+  when: not enable_cron|bool

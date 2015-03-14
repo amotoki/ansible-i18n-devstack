@@ -1,0 +1,15 @@
+- name: Ensure {{ home }}/.bash_completion.d
+  file: dest={{ bash_completion_dir }}
+        mode=0755
+        state=directory
+- name: Prepare OpenStack CLI bash completions
+  get_url:
+    url: http://git.openstack.org/cgit/openstack/python-{{ item }}client/plain/tools/{{ item }}.bash_completion
+    dest: "{{ bash_completion_dir }}/{{ item }}"
+    force: yes
+  with_items:
+    - cinder
+    - nova
+    - neutron
+    - keystone
+    - glance

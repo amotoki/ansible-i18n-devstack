@@ -9,15 +9,15 @@ ansible-playbook for I18N Horizon check site
 
 2. Install ansible.
 
-        apt-get install python-pip python-dev libyaml-dev
-        pip install ansible
+        sudo apt-get install python-pip python-dev libyaml-dev
+        sudo pip install ansible
 
 3. Prepare .transifexrc.
    Transifex account is required to download the latest translation.
 
 4. Run the Ansible playbook in this repository.
 
-        ansible-playbook -i hosts all.yml
+        ansible-playbook -i hosts all.yml -K
 
 5. Run devstack
 

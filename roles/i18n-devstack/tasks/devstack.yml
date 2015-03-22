@@ -1,10 +1,10 @@
 - name: Install git
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=installed update_cache=yes cache_valid_time=3600
   with_items:
     - git
   sudo: yes
 - name: Install optional packages for OpenStack development
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=installed update_cache=yes cache_valid_time=3600
   with_items:
     - libmysqlclient-dev
     - libxml2-dev

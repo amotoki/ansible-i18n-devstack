@@ -15,6 +15,13 @@ ansible-playbook for I18N Horizon check site
 3. Prepare .transifexrc.
    Transifex account is required to download the latest translation.
 
+4. Prepare passwords.yml file.
+   The following command generates a password.yml with random passwords.
+   If you use simpler/easier to remember password for Horizon,
+   change admin\_password in the generated passwords.yml.
+
+        ./gen_passwords.sh
+
 4. Run the Ansible playbook in this repository.
 
         ansible-playbook -i hosts all.yml -K

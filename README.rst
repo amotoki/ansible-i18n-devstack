@@ -19,15 +19,25 @@ ansible-playbook for I18N Horizon check site
        sudo apt-get install python-pip python-dev libyaml-dev
        sudo pip install ansible
 
-3. Prepare zanata.ini.
-   Follow the instruction at http://zanata-client.readthedocs.org/en/latest/configuration/
-
-4. Prepare passwords.yml file.
-   The following command generates a password.yml with random passwords.
+3. Prepare ``passwords.yml`` file.
+   The following command generates a ``password.yml`` with random passwords.
    If you use simpler/easier to remember password for Horizon,
-   change ``admin_password`` in the generated passwords.yml::
+   change ``admin_password`` in the generated ``passwords.yml``::
 
        ./gen_passwords.sh
+
+4. Prepare zanata.ini (``$HOME/.config/zanata.ini``).
+   Follow the instruction at http://zanata-client.readthedocs.org/en/latest/configuration/
+
+   Instead of creating zanata.ini, you can add the following entries
+   to ``passwords.yml`` generated in the previous step alternatively.
+   In this case, ansible run at the next step deploys ``zanata.ini``
+   appropriately.
+
+   ::
+
+       zanata_username: USERNAME
+       zanata_apikey: APIKEY
 
 5. Run the Ansible playbook in this repository::
 

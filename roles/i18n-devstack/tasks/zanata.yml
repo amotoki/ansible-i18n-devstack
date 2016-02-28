@@ -1,0 +1,28 @@
+---
+- name: Ensure ~/.config
+  file: path={{home}}/.config state=directory
+
+- include: password-var.yml
+  vars:
+    passwords:
+      _zanata_username: "{{zanata_username}}"
+      _zanata_apikey: "{{zanata_apikey}}"
+
+- name: Deploy Zanata config
+  template: src=zanata.ini.j2 dest={{ home }}/.config/zanata.ini mode=0600 backup=yes
+  when: _zanata_username is defined and _zanata_apikey is defined
+
+- name: Install dependencies of zanata-cli
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - zeroinstall-injector
+    - openjdk-7-jre
+  sudo: yes
+
+- name: check zanata-cli is installed
+  stat: path="{{ home }}/bin/zanata-cli"
+  register: zanata_cli
+
+- name: Install zanata-cli
+  shell: "yes | 0install -c add zanata-cli https://raw.githubusercontent.com/zanata/zanata.github.io/master/files/0install/zanata-cli.xml"
+  when: not zanata_cli.stat.exists

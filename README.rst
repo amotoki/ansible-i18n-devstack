@@ -2,6 +2,12 @@
 ansible-playbook for I18N Horizon check site
 ============================================
 
+.. warning::
+
+   This repository is not well maintained now because OpenStack i18n team
+   is now working on the translation check site as OpenStack infra.
+   As of the end of Feb 2016, this repository works well.
+
 1. Prepare minimum installation of Ubuntu 14.04.
 
    * Ubuntu server is enough.

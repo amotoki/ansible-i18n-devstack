@@ -1,6 +1,7 @@
 branch: master
-#branch: stable/juno
+#branch: stable/mitaka
 enable_cron: yes
+use_neutron: yes
 
 home: "{{ ansible_env.HOME }}"
 devstack_dir: "{{ home }}/devstack"
